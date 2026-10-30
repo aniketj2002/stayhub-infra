@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars to override defaults (no secrets stored here)
+prefix              = "aniket"
+project_name        = "stayhub"
+aws_region          = "eu-west-1"
+app_env             = "production"
+version_mode        = "v1"
+db_instance_class   = "db.t4g.micro"
+redis_node_type     = "cache.t4g.micro"
+ecs_api_cpu         = 256
+ecs_api_memory      = 512
+ecs_worker_cpu      = 256
+ecs_worker_memory   = 512
+auto_migrate        = true
+auto_seed           = true
