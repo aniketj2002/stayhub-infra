@@ -15,9 +15,9 @@ resource "aws_elasticache_cluster" "redis" {
   num_cache_nodes = 1
   port            = 6379
 
-  preferred_availability_zone = local.az_primary
-  subnet_group_name           = aws_elasticache_subnet_group.main.name
-  security_group_ids          = [aws_security_group.redis.id]
+  preferred_availability_zones = [local.az_primary]
+  subnet_group_name            = aws_elasticache_subnet_group.main.name
+  security_group_ids           = [aws_security_group.redis.id]
 
   tags = {
     Name = "${var.prefix}-redis-cache"

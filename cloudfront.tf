@@ -1,7 +1,7 @@
 locals {
-  cf_policy_caching_optimized             = "658327ea-f89d-4fab-a63d-7e88639e58f6"
-  cf_policy_caching_disabled              = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
-  cf_origin_req_all_viewer_except_host    = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
+  cf_policy_caching_optimized          = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+  cf_policy_caching_disabled           = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+  cf_origin_req_all_viewer_except_host = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
 }
 
 resource "aws_cloudfront_origin_access_control" "s3_oac" {
