@@ -13,7 +13,7 @@ variable "project_name" {
 variable "aws_region" {
   description = "Single AWS region for deployment (multi-region is out of scope per spec)"
   type        = string
-  default     = "eu-west-1"
+  default     = "us-east-1"
 }
 
 variable "app_env" {

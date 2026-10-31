@@ -3,7 +3,7 @@
 Terraform Infrastructure as Code (IaC) for **StayHub** on AWS.
 
 ## Architecture & Resources
-- **Single-Region (`eu-west-1`)**, Single-AZ, lowest available machine tiers.
+- **Single-Region (`us-east-1`)**, Single-AZ, lowest available machine tiers.
 - All resources prefixed with **`aniket-`**:
   - `aniket-vpc`: Custom VPC (`10.0.0.0/16`) with public & private subnets.
   - `aniket-rds-postgres`: RDS PostgreSQL 15, `db.t4g.micro`, Single-AZ, 20GB gp3.

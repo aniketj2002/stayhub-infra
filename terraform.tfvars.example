@@ -1,7 +1,7 @@
 # Copy to terraform.tfvars to override defaults (no secrets stored here)
 prefix              = "aniket"
 project_name        = "stayhub"
-aws_region          = "eu-west-1"
+aws_region          = "us-east-1"
 app_env             = "production"
 version_mode        = "v1"
 db_instance_class   = "db.t4g.micro"

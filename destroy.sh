@@ -4,7 +4,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INFRA_DIR="${SCRIPT_DIR}"
 
-AWS_REGION="${AWS_REGION:-${TF_VAR_aws_region:-eu-west-1}}"
+CLI_REGION="$(aws configure get region 2>/dev/null || true)"
+AWS_REGION="${AWS_REGION:-${TF_VAR_aws_region:-${AWS_DEFAULT_REGION:-${CLI_REGION:-us-east-1}}}}"
 PREFIX="${TF_VAR_prefix:-aniket}"
 
 echo "======================================================================="
