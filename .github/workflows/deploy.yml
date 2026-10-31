@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: ${{ vars.AWS_REGION || 'eu-west-1' }}
+  AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
   PREFIX: ${{ vars.PREFIX || 'aniket' }}
 
 jobs:

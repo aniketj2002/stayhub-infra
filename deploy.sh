@@ -106,6 +106,23 @@ ECS_CLUSTER="$("${TF_BIN}" -chdir="${INFRA_DIR}" output -raw ecs_cluster_name)"
 ECS_API_SVC="$("${TF_BIN}" -chdir="${INFRA_DIR}" output -raw ecs_api_service_name)"
 ECS_WORKER_SVC="$("${TF_BIN}" -chdir="${INFRA_DIR}" output -raw ecs_worker_service_name)"
 APP_URL="$("${TF_BIN}" -chdir="${INFRA_DIR}" output -raw app_url)"
+SES_SENDER="aniketjindal2002@gmail.com"
+
+echo "      Verifying AWS SES identity for ${SES_SENDER}..."
+SES_STATUS="$(aws ses get-identity-verification-attributes \
+  --identities "${SES_SENDER}" \
+  --region "${AWS_REGION}" \
+  --query "VerificationAttributes.\"${SES_SENDER}\".VerificationStatus" \
+  --output text 2>/dev/null || echo "Pending")"
+
+if [[ "${SES_STATUS}" == "Success" ]]; then
+  echo "      AWS SES Sender [${SES_SENDER}] is VERIFIED and ready."
+else
+  echo "      AWS SES Sender [${SES_SENDER}] verification status: ${SES_STATUS}"
+  echo "      Requesting verification email from AWS SES..."
+  aws ses verify-email-identity --email-address "${SES_SENDER}" --region "${AWS_REGION}" >/dev/null 2>&1 || true
+  echo "      NOTICE: Please check your inbox at ${SES_SENDER} and click the AWS verification link if not already verified."
+fi
 
 # 6. Build Frontend SPA and sync to S3 + CloudFront
 echo "[5/6] Building Frontend SPA and syncing to s3://${FRONTEND_BUCKET}..."
@@ -156,6 +173,7 @@ echo " Admin Login URL         : ${APP_URL}/admin/login"
 echo " System Health Status    : ${APP_URL}/system"
 echo " API Healthz Endpoint    : ${APP_URL}/healthz"
 echo " Event Log API Endpoint  : ${APP_URL}/api/v1/events"
+echo " SES Outbound Sender     : ${SES_SENDER} (status: ${SES_STATUS})"
 echo "-----------------------------------------------------------------------"
 echo " Seed Credentials (Password for all accounts: Password123!)"
 echo "   Guest  : claire.dubois@stayhub.dev"

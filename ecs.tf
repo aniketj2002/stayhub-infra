@@ -51,6 +51,12 @@ locals {
     { name = "STAYHUB_VERSION_MODE", value = var.version_mode },
     { name = "AUTO_MIGRATE", value = tostring(var.auto_migrate) },
     { name = "AUTO_SEED", value = tostring(var.auto_seed) },
+    { name = "AWS_REGION", value = var.aws_region },
+    { name = "APP_BASE_URL", value = "https://${aws_cloudfront_distribution.main.domain_name}" },
+    { name = "SES_SENDER_EMAIL", value = aws_ses_email_identity.sender.email },
+    { name = "EVENTBRIDGE_ROLE_ARN", value = aws_iam_role.scheduler.arn },
+    { name = "PAYOUT_QUEUE_URL", value = aws_sqs_queue.payout.url },
+    { name = "PAYOUT_QUEUE_ARN", value = aws_sqs_queue.payout.arn },
   ]
 
   common_container_secrets = [

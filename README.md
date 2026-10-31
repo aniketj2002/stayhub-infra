@@ -14,6 +14,7 @@ Terraform Infrastructure as Code (IaC) for **StayHub** on AWS.
   - `aniket-alb` & `aniket-tg-api`: Ingress load balancer on port 8080.
   - `aniket-ecs-cluster`, `aniket-api-service`, `aniket-worker-service`: ECS Fargate tasks (0.25 vCPU, 0.5 GB RAM).
   - `aniket-ecr-api`, `aniket-ecr-worker`: Container registries.
+  - `aws_ses_email_identity`: Amazon SES email verification for `aniketjindal2002@gmail.com` with least-privilege IAM send permissions.
   - `/aniket/stayhub/*`: SSM Parameter Store `SecureString` KMS-encrypted secrets.
 
 ## Prerequisites

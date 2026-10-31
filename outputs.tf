@@ -92,3 +92,28 @@ output "redis_endpoint" {
   description = "ElastiCache Redis Endpoint"
   value       = "${aws_elasticache_cluster.redis.cache_nodes[0].address}:${aws_elasticache_cluster.redis.cache_nodes[0].port}"
 }
+
+output "payout_queue_url" {
+  description = "SQS Payout Queue URL"
+  value       = aws_sqs_queue.payout.url
+}
+
+output "payout_queue_arn" {
+  description = "SQS Payout Queue ARN"
+  value       = aws_sqs_queue.payout.arn
+}
+
+output "payout_dlq_url" {
+  description = "SQS Payout Dead Letter Queue URL"
+  value       = aws_sqs_queue.payout_dlq.url
+}
+
+output "eventbridge_scheduler_role_arn" {
+  description = "IAM Role ARN for EventBridge Scheduler Target"
+  value       = aws_iam_role.scheduler.arn
+}
+
+output "ses_sender_email" {
+  description = "SES Verified Sender Email Identity"
+  value       = aws_ses_email_identity.sender.email
+}
